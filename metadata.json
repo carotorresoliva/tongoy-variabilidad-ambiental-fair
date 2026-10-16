@@ -1,0 +1,308 @@
+{
+  "titulo": "Variabilidad espacial y estacional de las condiciones ambientales en Bahía Barnes, Tongoy",
+  "descripcion": "Conjunto de datos procesados de Sentinel-2 y MODIS Aqua para el análisis exploratorio de indicadores espectrales y temperatura superficial del mar.",
+  "area_estudio": {
+    "nombre": "Bahía Barnes, Tongoy, Chile",
+    "sistema_coordenadas": "EPSG:4326",
+    "numero_puntos": 5
+  },
+  "periodos": {
+    "verano": "2025-12-01/2026-02-28",
+    "invierno": "2026-06-01/2026-08-31"
+  },
+  "fuentes": [
+    {
+      "sensor": "Sentinel-2",
+      "variables": [
+        "ndci",
+        "ndwi",
+        "b04",
+        "ndvi"
+      ]
+    },
+    {
+      "sensor": "MODIS Aqua",
+      "producto": "MODIS_AQUA_L3_SST_THERMAL_MONTHLY_4KM_DAYTIME_V2019.0",
+      "variables": [
+        "sst_c",
+        "qual_sst"
+      ],
+      "resolucion_nominal": "4 km"
+    }
+  ],
+  "archivos": [
+    {
+      "nombre": "modis_aqua_sst_pixeles.parquet",
+      "formato": "Parquet",
+      "registros": 18,
+      "variables": [
+        {
+          "nombre": "fecha",
+          "tipo": "datetime64[ns]",
+          "descripcion": "Fecha de adquisición o mes representado",
+          "unidad": "ISO 8601"
+        },
+        {
+          "nombre": "estacion",
+          "tipo": "object",
+          "descripcion": "Estación del período analizado",
+          "unidad": "categoría"
+        },
+        {
+          "nombre": "id",
+          "tipo": "object",
+          "descripcion": "Identificador del punto de estudio asociado",
+          "unidad": "texto"
+        },
+        {
+          "nombre": "lat_pixel",
+          "tipo": "float64",
+          "descripcion": "Latitud del centro del píxel MODIS",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "lon_pixel",
+          "tipo": "float64",
+          "descripcion": "Longitud del centro del píxel MODIS",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "sst_c",
+          "tipo": "float64",
+          "descripcion": "Temperatura superficial del mar",
+          "unidad": "°C"
+        },
+        {
+          "nombre": "qual_sst",
+          "tipo": "float64",
+          "descripcion": "Código de calidad de SST",
+          "unidad": "adimensional"
+        }
+      ]
+    },
+    {
+      "nombre": "modis_aqua_sst_puntos.parquet",
+      "formato": "Parquet",
+      "registros": 30,
+      "variables": [
+        {
+          "nombre": "fecha",
+          "tipo": "datetime64[ns]",
+          "descripcion": "Fecha de adquisición o mes representado",
+          "unidad": "ISO 8601"
+        },
+        {
+          "nombre": "estacion",
+          "tipo": "object",
+          "descripcion": "Estación del período analizado",
+          "unidad": "categoría"
+        },
+        {
+          "nombre": "id",
+          "tipo": "object",
+          "descripcion": "Identificador del punto de estudio asociado",
+          "unidad": "texto"
+        },
+        {
+          "nombre": "lat_pixel",
+          "tipo": "float64",
+          "descripcion": "Latitud del centro del píxel MODIS",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "lon_pixel",
+          "tipo": "float64",
+          "descripcion": "Longitud del centro del píxel MODIS",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "sst_c",
+          "tipo": "float64",
+          "descripcion": "Temperatura superficial del mar",
+          "unidad": "°C"
+        },
+        {
+          "nombre": "qual_sst",
+          "tipo": "float64",
+          "descripcion": "Código de calidad de SST",
+          "unidad": "adimensional"
+        }
+      ]
+    },
+    {
+      "nombre": "modis_aqua_sst_resumen_mensual.parquet",
+      "formato": "Parquet",
+      "registros": 6,
+      "variables": [
+        {
+          "nombre": "fecha",
+          "tipo": "datetime64[ns]",
+          "descripcion": "Fecha de adquisición o mes representado",
+          "unidad": "ISO 8601"
+        },
+        {
+          "nombre": "estacion",
+          "tipo": "object",
+          "descripcion": "Estación del período analizado",
+          "unidad": "categoría"
+        },
+        {
+          "nombre": "n_pixeles",
+          "tipo": "int64",
+          "descripcion": "Número de píxeles considerados",
+          "unidad": "conteo"
+        },
+        {
+          "nombre": "sst_mediana",
+          "tipo": "float64",
+          "descripcion": "Mediana mensual de SST entre píxeles únicos",
+          "unidad": "°C"
+        },
+        {
+          "nombre": "sst_minima",
+          "tipo": "float64",
+          "descripcion": "Mínima SST mensual entre píxeles únicos",
+          "unidad": "°C"
+        },
+        {
+          "nombre": "sst_maxima",
+          "tipo": "float64",
+          "descripcion": "Máxima SST mensual entre píxeles únicos",
+          "unidad": "°C"
+        }
+      ]
+    },
+    {
+      "nombre": "sentinel2_tongoy_estacional.parquet",
+      "formato": "Parquet",
+      "registros": 375,
+      "variables": [
+        {
+          "nombre": "id",
+          "tipo": "object",
+          "descripcion": "Identificador del punto de estudio asociado",
+          "unidad": "texto"
+        },
+        {
+          "nombre": "nombre",
+          "tipo": "object",
+          "descripcion": "Nombre del punto de estudio",
+          "unidad": "texto"
+        },
+        {
+          "nombre": "tipo",
+          "tipo": "object",
+          "descripcion": "Tipo de sitio",
+          "unidad": "categoría"
+        },
+        {
+          "nombre": "lat",
+          "tipo": "float64",
+          "descripcion": "Latitud del punto de estudio",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "lon",
+          "tipo": "float64",
+          "descripcion": "Longitud del punto de estudio",
+          "unidad": "grados decimales"
+        },
+        {
+          "nombre": "fecha",
+          "tipo": "datetime64[ns]",
+          "descripcion": "Fecha de adquisición o mes representado",
+          "unidad": "ISO 8601"
+        },
+        {
+          "nombre": "ndwi",
+          "tipo": "float64",
+          "descripcion": "Índice NIR-SWIR1, también denominado NDMI",
+          "unidad": "adimensional"
+        },
+        {
+          "nombre": "ndci",
+          "tipo": "float64",
+          "descripcion": "Índice espectral NDCI",
+          "unidad": "adimensional"
+        },
+        {
+          "nombre": "b04",
+          "tipo": "float64",
+          "descripcion": "Reflectancia de la banda roja Sentinel-2",
+          "unidad": "adimensional"
+        },
+        {
+          "nombre": "ndvi",
+          "tipo": "float64",
+          "descripcion": "Índice de vegetación de diferencia normalizada",
+          "unidad": "adimensional"
+        },
+        {
+          "nombre": "nubes_escena",
+          "tipo": "float64",
+          "descripcion": "Cobertura de nubes de la escena",
+          "unidad": "%"
+        },
+        {
+          "nombre": "pixeles_validos",
+          "tipo": "float32",
+          "descripcion": "Fracción de píxeles válidos",
+          "unidad": "0–1"
+        },
+        {
+          "nombre": "n_pixeles",
+          "tipo": "int64",
+          "descripcion": "Número de píxeles considerados",
+          "unidad": "conteo"
+        },
+        {
+          "nombre": "offset_reflectancia",
+          "tipo": "float64",
+          "descripcion": "Offset de corrección de reflectancia",
+          "unidad": "por verificar"
+        },
+        {
+          "nombre": "estacion",
+          "tipo": "object",
+          "descripcion": "Estación del período analizado",
+          "unidad": "categoría"
+        }
+      ]
+    }
+  ],
+  "fecha_generacion": "2026-10-16",
+  "procesamiento": {
+    "sentinel2": {
+      "fuente": "Sentinel-2 Level-2A",
+      "metodo": "Series temporales mediante funciones del repositorio Geomática Aplicada",
+      "resumen_espacial": "Mediana de píxeles en ventanas alrededor de cada punto",
+      "control_calidad": "Máscaras de calidad y registros faltantes conservados",
+      "indices": {
+        "ndci": "(B05 - B04) / (B05 + B04)",
+        "ndwi": "(B08 - B11) / (B08 + B11)"
+      },
+      "observaciones": "Verificar y documentar parámetros exactos de extracción y corrección radiométrica"
+    },
+    "modis_aqua": {
+      "producto": "MODIS_AQUA_L3_SST_THERMAL_MONTHLY_4KM_DAYTIME_V2019.0",
+      "frecuencia": "Mensual",
+      "resolucion_espacial": "4 km nominal",
+      "seleccion": "Píxel más cercano a cada punto",
+      "control_calidad": "qual_sst == 0",
+      "duplicados": "Un registro por píxel y mes",
+      "resumen": "Mediana, mínimo y máximo mensual entre píxeles únicos"
+    }
+  },
+  "codigo_fuente": {
+    "repositorio": "https://github.com/alvaroparedesl/geomatica-aplicada",
+    "commit": "78b8adf33ed24112401032c1abef0bb997811e90",
+    "modulos_utilizados": [
+      "utils.raster",
+      "utils.series"
+    ],
+    "nota": "Funciones reutilizadas del repositorio del taller",
+    "licencia": "GPL-3.0",
+    "licencia_url": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "atribucion": "Repositorio Geomática Aplicada, de alvaroparedesl, utilizado como fuente de funciones para el procesamiento geoespacial."
+  }
+}
